@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>华体会 · 主题叙事</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f7fafc;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', sans-serif;
+      color: #1e293b;
+      line-height: 1.7;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    /* hero 横幅 — 杂志开篇 */
+    .hero {
+      background: linear-gradient(135deg, #e1f0f7 0%, #c6e0ed 70%, #d3e9f3 100%);
+      padding: 3rem 2rem;
+      border-radius: 32px;
+      margin-bottom: 3rem;
+      box-shadow: 0 8px 20px rgba(16, 94, 109, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(38, 166, 154, 0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero__label {
+      display: inline-block;
+      background: #198a7a;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      padding: 0.25rem 1rem;
+      border-radius: 30px;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 550;
+      color: #0b3b3a;
+      letter-spacing: -0.02em;
+      max-width: 780px;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #2c5a59;
+      max-width: 640px;
+      margin-top: 1rem;
+      border-left: 4px solid #1f9a8a;
+      padding-left: 1.2rem;
+    }
+
+    /* 网格卡片区 */
+    .grid-section {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin: 2.8rem 0 0;
+    }
+
+    @media (min-width: 540px) {
+      .grid-section {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 960px) {
+      .grid-section {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 1.8rem 1.6rem 2rem;
+      box-shadow: 0 4px 14px rgba(16, 70, 70, 0.06);
+      border: 1px solid #dfeef0;
+      transition: transform 0.15s ease, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(16, 94, 80, 0.08);
+    }
+
+    .card__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: #d4f0ec;
+      border-radius: 16px;
+      margin-bottom: 1.2rem;
+      font-size: 1.6rem;
+      color: #116b5f;
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      font-weight: 520;
+      color: #0c4040;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #3c5b5a;
+      margin-bottom: 0.2rem;
+    }
+
+    .card .tag {
+      display: inline-block;
+      margin-top: 0.8rem;
+      background: #e9f5f2;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      color: #1f7367;
+      font-weight: 500;
+    }
+
+    /* 较长自然段落 — 仿杂志内页 */
+    .essay-block {
+      margin: 3rem 0 2.5rem;
+      background: #ffffffd9;
+      backdrop-filter: blur(2px);
+      padding: 2rem 2rem 2rem 2.2rem;
+      border-radius: 28px;
+      border-left: 6px solid #259484;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+    }
+
+    .essay-block h2 {
+      font-size: 1.7rem;
+      font-weight: 500;
+      color: #0d4740;
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+    }
+
+    .essay-block p {
+      margin-bottom: 1.2rem;
+      color: #2f4a49;
+    }
+
+    .essay-block a {
+      color: #117a6a;
+      text-decoration: none;
+      font-weight: 550;
+      border-bottom: 1px solid #a9cfc7;
+      transition: border-color 0.2s;
+    }
+
+    .essay-block a:hover {
+      border-bottom-color: #0c5d50;
+    }
+
+    /* 提示卡片 — 页尾区域 */
+    .outro {
+      margin-top: 3rem;
+      background: #e6f3f0;
+      padding: 2rem 2rem;
+      border-radius: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .outro p {
+      flex: 1 1 200px;
+      font-size: 1rem;
+      color: #22544b;
+      margin-right: 1rem;
+    }
+
+    .outro .hint {
+      background: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 480;
+      color: #1a6b5f;
+      box-shadow: 0 2px 8px rgba(16, 80, 70, 0.06);
+      white-space: nowrap;
+    }
+
+    .outro .hint a {
+      color: #0b5b4e;
+      text-decoration: none;
+      font-weight: 550;
+      border-bottom: 1px solid transparent;
+    }
+
+    .outro .hint a:hover {
+      border-bottom: 1px solid #1d7f6b;
+    }
+
+    /* 移动端细节调整 */
+    @media (max-width: 500px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero {
+        padding: 2rem 1.2rem;
+      }
+      .essay-block {
+        padding: 1.5rem 1.2rem;
+      }
+      .outro {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .outro .hint {
+        white-space: normal;
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 杂志式 hero 横幅 -->
+  <div class="hero">
+    <div class="hero__label">本期专题 · 在场</div>
+    <h1>自然生长的脉络<br>从「华体会」说起</h1>
+    <p>一个词的背后往往连接着经验、社区以及持续的对话。它并不急于定义什么，只是安静地提供一种看世界的角度。</p>
+  </div>
+
+  <!-- 三段自然介绍：以网格卡片承载，但文字更侧重背景和场景 -->
+  <div class="grid-section">
+    <div class="card">
+      <div class="card__icon">🌱</div>
+      <h3>语境与线索</h3>
+      <p>每一个常用词都携带着独特的生活痕迹。「华体会」所指向的空间和语境，在近年的交流中逐渐沉淀为一种共同的参照——没有喧嚣，只有持续的内容与关注。</p>
+      <span class="tag">场景 · 日常</span>
+    </div>
+    <div class="card">
+      <div class="card__icon">🔄</div>
+      <h3>流动的集合</h3>
+      <p>它更像一个枢纽：信息、兴趣、不同的浏览习惯在此汇合。不论从哪个入口走近，都能感受到一种经过筛选的、克制的节奏，不煽情，不疏离。</p>
+      <span class="tag">结构 · 连接</span>
+    </div>
+    <div class="card">
+      <div class="card__icon">📋</div>
+      <h3>状态的切片</h3>
+      <p>我们谈论一个名称的时候，实际上是在谈论它所串联的片刻——某些页面、某些选择、某些安静的停留。这也是为什么很多人会自然而然地重新回到<a href="https://intl1-huatihui.com" style="color: #117a6a; text-decoration: underline; text-underline-offset: 3px;">华体会</a>所承载的界面中。</p>
+      <span class="tag">切片 · 回访</span>
+    </div>
+  </div>
+
+  <!-- 背景说明 + 自然延伸 段落（essay 风格） -->
+  <div class="essay-block">
+    <h2>词与路径</h2>
+    <p>在互联网的无数节点中，有一些名称因为持续出现而获得了特殊的厚度。它们不是流行语，而更接近坐标——让浏览者确认自己依然处在熟悉的叙事里。<strong>华体会</strong>便是这样的一个存在：它不制造惊奇，而是提供一种温和的确定性。</p>
+    <p>从语言的角度看，三个字的组合既简明又留有想象空间；<a href="https://intl1-huatihui.com">华体会</a>本身也像一条安静的走廊，把不同的内容板块串联起来。无论你是因为什么契机第一次注意到它，第二次再遇时就会有一种“原来你也在这里”的默契。</p>
+    <p>杂志式的阅读往往需要停顿和呼吸。这个页面也是一样——没有催促，只有呈现。当你准备好了，继续向前就好。</p>
+  </div>
+
+  <!-- 另一段介绍：功能与体验上的琐记，避免重复上面的语调 -->
+  <div style="margin: 0.5rem 0 2.5rem; display: flex; flex-wrap: wrap; gap: 1.8rem; background: transparent; padding: 0.2rem 0;">
+    <div style="flex: 1 1 260px; background: #f1f9f7; border-radius: 20px; padding: 1.4rem 1.6rem;">
+      <div style="font-size: 1.2rem; margin-bottom: 0.2rem;">🎐</div>
+      <h4 style="font-weight: 520; color: #15554b; margin-bottom: 0.3rem;">简洁的引导</h4>
+      <p style="font-size: 0.95rem; color: #335d57;">界面的重心永远在内容本身，没有多余的元素。使用者只需跟随自己的兴趣，就能自然发现下一处值得停留的地方。</p>
+    </div>
+    <div style="flex: 1 1 260px; background: #f1f9f7; border-radius: 20px; padding: 1.4rem 1.6rem;">
+      <div style="font-size: 1.2rem; margin-bottom: 0.2rem;">🧩</div>
+      <h4 style="font-weight: 520; color: #15554b; margin-bottom: 0.3rem;">社区的回声</h4>
+      <p style="font-size: 0.95rem; color: #335d57;">许多人在分享中提到，<a href="https://intl1-huatihui.com" style="color: #0f6d5e; text-decoration: underline; text-underline-offset: 3px;">华体会</a>带给他们的是一种“不被打扰的在场感”。这或许正是它最独特的质地——不主动索取注意力，却让人愿意再次回来。</p>
+    </div>
+  </div>
+
+  <!-- 页尾访问提示（避免硬广语气，温和收束） -->
+  <div class="outro">
+    <p>📬 如果你刚刚开始接触这个词，不妨把它当作一次安静的散步。那里没有喧嚣，只有一种持续的、属于自己的节奏。</p>
+    <div class="hint">
+      <span>→ 了解更多，可浏览 </span>
+      <a href="https://intl1-huatihui.com">华体会</a>
+    </div>
+  </div>
+
+  <!-- 极简页脚装饰（纯属杂志风格） -->
+  <div style="margin-top: 2.2rem; text-align: center; font-size: 0.75rem; color: #779b93; border-top: 1px solid #d2e8e2; padding-top: 1.5rem; letter-spacing: 0.3px;">
+    内容专题 · 2025 · 温和叙事的角落
+  </div>
+</div>
+</body>
+</html>
